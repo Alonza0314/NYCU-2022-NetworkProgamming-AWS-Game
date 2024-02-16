@@ -17,7 +17,9 @@ scp -i labsuser.pem {file} ec2-user@{ip}:/home/ec2-user
 #Downloads packages on EC2
 
 sudo yum update
+
 sudo yum install -y gcc-c++
+
 sudo yum install -y amazon-efs-utils
 
 #Mount EFS
@@ -35,7 +37,11 @@ efs/server{1,2,3}.txt
 #Run with TA's test-code
 
 ./build.sh
+
 python3 demo.py --server-ip 127.0.0.1
+
 ./build/server
+
 python3 demo_part3.py --server-ips <server1 IP> <server2 IP> <server3 IP>
+
 rm -r build
