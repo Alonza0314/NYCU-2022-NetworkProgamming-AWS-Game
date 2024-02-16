@@ -1,0 +1,27 @@
+cd /mnt/d/大三上/網路程式設計概論/HW3
+
+#鏈接ec2
+ssh -i labsuser.pem ec2-user@
+
+#傳送檔案過去
+scp -i labsuser.pem {file} ec2-user@{ip}:/home/ec2-user
+
+#下載東西
+sudo yum update
+sudo yum install -y gcc-c++
+sudo yum install -y amazon-efs-utils
+
+#掛載efs
+sudo mount -t efs -o tls fs-03679d242d88a3601:/ efs
+
+docker run -it -v D:/大三上/網路程式設計概論/HW3:/home/build yuthomas/np_hw2_x86:latest bin/bash
+
+#efs path
+efs/server{1,2,3}.txt
+
+#run
+./build.sh
+python3 demo.py --server-ip 127.0.0.1
+./build/server
+python3 demo_part3.py --server-ips <server1 IP> <server2 IP> <server3 IP>
+rm -r build
